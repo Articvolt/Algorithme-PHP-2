@@ -122,6 +122,21 @@ class Voiture {
         }
     }
 
+    public function ralentir($vitesse) {
+        if($this->_contact) {
+            $this->_vitesseActuelle -= $vitesse;
+            if($this->_vitesseActuelle < 0) {
+                echo "le véhicule est à l'arrêt<br>";
+                return $this->_vitesseActuelle = 0;
+            } else {
+                echo "Le véhicule $this->_marque ralentit à $this->_vitesseActuelle km/h<br>";
+            }
+            
+        } else {
+            echo "Pour ralentir, le vehicule $this->_marque doit être démarré !<br>";
+        }
+    }
+
     public function afficherVitesse() {
         echo "La vitesse du vehicule $this->_marque est de : $this->_vitesseActuelle km/h<br>";
     }
@@ -140,8 +155,10 @@ class Voiture {
 echo $v2;
 $v1->demarrer();
 $v1->accelerer(50);
+$v1->ralentir(60);
 $v1->afficherVitesse();
 echo $v1;
+
 $v2->accelerer(60);
 $v2->afficherVitesse();
 
