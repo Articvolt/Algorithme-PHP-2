@@ -20,28 +20,33 @@ suivants :
 
 <?php 
 
-$v1 = new Voiture ("Peugeot", "408", 5);
-$v2 = new Voiture("Citroën", "C4", 3);
+$v1 = new Voiture ("Voiture 1","Peugeot", "408", 5);
+$v2 = new Voiture("Voiture 2", "Citroën", "C4", 3);
 
 class Voiture {
+    private string $_ID;
     private string $_marque;
     private string $_modele;
     private int $_nbPortes;
     private int $_vitesseActuelle;
 
-    public function __construct(string $marque, string $modele, int $nbPortes, int $vitesseActuelle = 0) {
+    public function __construct(string $ID, string $marque, string $modele, int $nbPortes, int $vitesseActuelle = 0) {
+        $this->_ID = $ID;
         $this->_marque = $marque;
-        $this->_modèle = $modele;
+        $this->_modele = $modele;
         $this->_nbPortes = $nbPortes;
         $this->_vitesseActuelle = $vitesseActuelle;
     }
 
     // GETTER
 
+    public function get_ID() {
+        return $this->_ID;
+    }
     public function get_marque() {
         return $this->_marque;
     }
-    public function get_modèle() {
+    public function get_modele() {
         return $this->_modele;
     }
     public function get_nbPortes() {
@@ -53,21 +58,38 @@ class Voiture {
 
     // SETTER
 
-    public function set_marque() {
-        $this->_marque = (string) $marque;
+    public function set_ID($NewID) {
+        $this->_ID = (string) $NewID;
+        return $this;
+    }
+    public function set_marque($NewMarque) {
+        $this->_marque = (string) $NewMarque;
         return $this;
     }
 
-    public function set_modèle() {
-        $this->_modèle = (string) $modele;
+    public function set_modele($NewModele) {
+        $this->_modele = (string) $NewModele;
         return $this;
     }
-    public function set_nbPortes() {
-        $this->_nbPortes = (int) $nbPortes;
+    public function set_nbPortes($NewNbPortes) {
+        $this->_nbPortes = (int) $NewNbPortes;
         return $this;
     }
-    public function set_vitesseActuelle() {
-        $this->_vitesseActuelle = (int) $vitesseActuelle;
+    public function set_vitesseActuelle($NewVitesseActuelle) {
+        $this->_vitesseActuelle = (int) $NewVitesseActuelle;
         return $this;
     }
+
+    // FONCTIONS
+
+    public function __toString() {
+        return "Info $this->_ID <br> 
+        ********************<br> 
+        Nom et modèle de véhicule : $this->_marque $this->_modele <br>
+        Nombre de portes : $this->_nbPortes <br> 
+        Sa vitesse est de $this->_vitesseActuelle km/h";
+    }
+
 }
+
+echo $v1;
